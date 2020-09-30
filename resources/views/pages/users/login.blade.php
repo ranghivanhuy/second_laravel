@@ -11,6 +11,9 @@
             
             <form action="{{route('postLogin')}}" method="POST" role="form">
                 @csrf
+                @if(session('message'))
+                <div class="error" style="color:red">{{session('message')}}</div>
+                @endif
                 <div class="form-group">
                     <label for="">Email</label>
                     <input type="text" class="form-control" name="email" placeholder="Enter your email address">

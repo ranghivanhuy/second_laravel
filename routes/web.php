@@ -34,7 +34,7 @@ Route::get('logout', [UserController::class, 'getLogout'])->name('logout');
 
 // POST
 Route::resource('posts', PostController::class);
-Route::get('/search', [PostController::class, 'search'])->name('search');
+// Route::get('/search', [PostController::class, 'search'])->name('search');
 // Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 // Route::group(['as' => 'posts.'], function(){

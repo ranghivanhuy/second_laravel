@@ -9,6 +9,7 @@
       </div>
       <div class="panel-body">
             <form action="{{route('posts.store')}}" method="POST" role="form" enctype="multipart/form-data">
+            @method('POST')
             @csrf
                 <div class="form-group">
                     <label for="">Post Name</label>

@@ -25,7 +25,6 @@ class AddRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'description' => 'required|string'
         ];
     }
@@ -35,8 +34,6 @@ class AddRequest extends FormRequest
         return [
             'name.required' => 'Name Post cannot be blank',
             'name.string' => 'Name Post must be string',
-            'image.image' => 'Invalid image',
-            'image.mimes' => 'Invalid image format',
             'description.required' => 'Description cannot be blank',
             'description.string' => 'Description must string'
         ];

@@ -45,11 +45,13 @@ class UserController extends Controller
     }
     public function postLogin(LoginRequest $request)
     {
-        $data=array(
-            'email'=>$request->get('email'),
-            'password'=>$request->get('password')
-        );
-        if(Auth::attempt($data))
+        // $data=array(
+        //     'email'=>$request->get('email'),
+        //     'password'=>$request->get('password')
+        // );
+        $email = $request->get('email');
+        $password = $request->get('password');
+        if(Auth::attempt(['email' => $email, 'password' => $password]))
         {
             // $request->session()->put('usersession', 
             // ['name' => $request->name, 'email' => $request->email, 'role_id' => $request->role_id]);
@@ -57,7 +59,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect()->route('getLogin');
+            return redirect()->back()->with('message', 'Email or Password is incorrect!');
         }
     }
 
