@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use DB;
 
 class PostController extends Controller
 {
@@ -14,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('pages.posts.list-post', compact('posts'));
+        $data = DB::table('posts')->where('status', '=', '1')->orderBy('id', 'asc')->paginate(3);
+        return view('pages.posts.list-post', compact('data'));
     }
 
     /**
@@ -38,14 +39,8 @@ class PostController extends Controller
     {
         $input['name'] = $request->get('name');
         $input['description'] = $request->get('description');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $filename);
-        }
         $post = Post::create($input);
-        $post->save();
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -56,7 +51,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('pages.posts.view-post');
+        $posts = Post::find($id);
+        return view('pages.posts.view-post')->with('posts', $posts);
     }
 
     /**
@@ -67,7 +63,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.posts.edit-post');
+        $posts = Post::findOrFail($id);
+        return view('pages.posts.edit-post', compact('posts'));
     }
 
     /**
@@ -79,7 +76,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->name = $request->get('name');
+        $post->description = $request->get('description');
+        $post->save();
+        return redirect('posts');
+        
     }
 
     /**
@@ -90,6 +92,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post = Post::whereIn($id);
+        $post->status = 0;
+        $post->save();
+        return redirect()->route('posts.index');
+    }
+
+    public function search(Request $request)
+    {
+        // 
     }
 }

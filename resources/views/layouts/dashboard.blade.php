@@ -21,8 +21,8 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">List post</a></li>
-            <li><a href="#">Add post</a></li>
+            <li><a href="{{route('posts.index')}}">List post</a></li>
+            <li><a href="{{route('posts.create')}}">Add post</a></li>
             <li><a href="{{route('logout')}}">Logout</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -34,4 +34,6 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </html>

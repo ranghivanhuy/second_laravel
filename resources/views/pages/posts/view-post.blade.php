@@ -7,24 +7,25 @@
         <tr>
             <th>ID</th>
             <th>Post Name</th>
-            <th>Image</th>
             <th>Description</th>
             <th>Status</th>
-            <th>Action</th>
         </tr>
     </thead>
     <tbody>
+    @foreach($posts as $post)
         <tr>
-            <td>1</td>
-            <td>asdasdas</td>
-            <td>Image here</td>
-            <td>asdasdaskdasdlasdasdjs</td>
-            <td>Active</td>
+            <td>{{$post->id}}</td>
+            <td>{{$post->name}}</td>
+            <td>{{$post->description}}</td>
             <td>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <form action="{{ route('posts.destroy', $post->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
             </td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 

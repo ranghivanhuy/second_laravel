@@ -8,21 +8,20 @@
             <h3 class="panel-title">EDIT POSST</h3>
       </div>
       <div class="panel-body">
-            <form action="" method="POST" role="form" enctype="multipart/form-data">
-            @csrf
+            <form action="{{route('posts.update', $posts->id)}}" method="POST" role="form" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @method('PATCH')
+                    @csrf
                 <div class="form-group">
                     <label for="">Post Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter name post">
-                </div>
-                <div class="form-group">
-                    <label for="">Post Image</label>
-                    <input type="file" class="form-control" name="image">
+                    <input type="text" class="form-control" name="name" value="{{$posts->name}}" placeholder="Enter name post">
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
-                    <input type="text" class="form-control" name="description" placeholder="Enter description">
+                    <input type="text" class="form-control" name="description" value="{{$posts->description}}" placeholder="Enter description">
                 </div>
                 <button type="submit" class="btn btn-warning">EDIT</button>
+                <a href="{{route('posts.index')}}" class="btn btn-primary">CANCEL</a>
             </form>
       </div>
 </div>
