@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Posts\AddRequest;
+use App\Http\Requests\Posts\EditRequest;
 use App\Models\Post;
 use DB;
 
@@ -35,7 +37,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddRequest $request)
     {
         $input['name'] = $request->get('name');
         $input['description'] = $request->get('description');
@@ -74,7 +76,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditRequest $request, $id)
     {
         $post = Post::find($id);
         $post->name = $request->get('name');

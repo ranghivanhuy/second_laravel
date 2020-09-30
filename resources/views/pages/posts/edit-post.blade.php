@@ -14,10 +14,16 @@
                 <div class="form-group">
                     <label for="">Post Name</label>
                     <input type="text" class="form-control" name="name" value="{{$posts->name}}" placeholder="Enter name post">
+                    @error('name')
+                    <div class="error" style="color:red;">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
                     <input type="text" class="form-control" name="description" value="{{$posts->description}}" placeholder="Enter description">
+                    @error('description')
+                    <div class="error" style="color:red;">{{$message}}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-warning">EDIT</button>
                 <a href="{{route('posts.index')}}" class="btn btn-primary">CANCEL</a>
