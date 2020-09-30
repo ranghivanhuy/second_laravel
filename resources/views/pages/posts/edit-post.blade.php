@@ -9,7 +9,6 @@
       </div>
       <div class="panel-body">
             <form action="{{route('posts.update', $posts->id)}}" method="POST" role="form" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @method('PATCH')
                     @csrf
                 <div class="form-group">

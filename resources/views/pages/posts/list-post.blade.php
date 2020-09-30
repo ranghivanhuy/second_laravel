@@ -36,7 +36,8 @@
     </table>
     <!-- <button class="btn btn-danger" type="submit">Delete</button> -->
     <div class="text-center">
-        {{$data->links()}}
+        {{$data->render('vendor.pagination.bootstrap-4')}}
+        <!-- {{$data->links()}} -->
     </div>
 </div>
     
