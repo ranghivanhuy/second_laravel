@@ -4,7 +4,7 @@
 
 <div class="list-post">
     
-    <form action="{{route('search')}}" method="get" class="form-horizontal" role="form">
+    <form action="{{route('posts.search')}}" method="get" class="form-horizontal" role="form">
             <div class="form-group">
                 <div class="col-sm-3 col-sm-offset-9">
                     <div class="input-group">

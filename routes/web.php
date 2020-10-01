@@ -32,11 +32,8 @@ Route::get('dashboard', [UserController::class, 'getDashboard'])->name('dashboar
 Route::get('logout', [UserController::class, 'getLogout'])->name('logout');
 
 
-// POST
+// POST table
 // Route::resource('posts', PostController::class);
-// Route::get('search', [PostController::class, 'search'])->name('search');
-// Route::get('search/action', [PostController::class, 'postSearch'])->name('search');
-// Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::group(['as' => 'posts.'], function(){
     Route::get('/posts', [PostController::class, 'index'])->name('index');
@@ -50,5 +47,6 @@ Route::group(['as' => 'posts.'], function(){
     Route::get('posts/show/{id}', [PostController::class, 'show'])->name('show');
 
     Route::delete('posts/delete', [PostController::class, 'tickToDelete'])->name('delete');
+    
+    Route::get('posts/search', [PostController::class, 'search'])->name('search');
 });
-Route::get('search', [PostController::class, 'search'])->name('search');
