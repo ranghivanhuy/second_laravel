@@ -17,8 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = DB::table('posts')->where('status', '=', '1')->orderBy('id', 'asc')->paginate(3);
-        return view('pages.posts.list-post', compact('data'));
+        $num = 1;
+        $data = DB::table('posts')->where('status', '=', '1')->orderBy('id', 'asc')->paginate(5);
+        return view('pages.posts.list-post', compact('data', 'num'));
     }
 
     /**
@@ -42,7 +43,15 @@ class PostController extends Controller
         $input['name'] = $request->get('name');
         $input['description'] = $request->get('description');
         $post = Post::create($input);
-        return redirect()->route('posts.index');
+        if($post)
+        {
+            return redirect()->route('posts.index');
+        }
+        else
+        {
+            return redirect()->back()->with('name', $input['name']);
+        }
+        
     }
 
     /**
@@ -107,17 +116,11 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
+        $num = 1;
         $search = $request->input('search');
-        if(!is_null($search)){
-            $data = Post::where('name', 'LIKE', '%' . $search . '%')
-            ->paginate(5);
-            if(count($data) > 0){
-                return view('pages.posts.list-post', compact('data'));
-            }else{
-                return redirect()->route('posts.index')->with('mesg', 'Search result not found.');
-            }
-        }else {
-            return redirect()->back()->with('mess','Sorry…You haven`t type yet.');
-        }
+        
+        $data = Post::where('name', 'LIKE', '%' . $search . '%')
+        ->paginate(5);
+        return view('pages.posts.list-post', compact('data', 'num', 'search'));
     }
 }

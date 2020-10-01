@@ -13,14 +13,18 @@
             @csrf
                 <div class="form-group">
                     <label for="">Post Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter name post">
+                    @if(session('name'))
+                    <input type="text" class="form-control" name="name" value="{{session('name')}}" placeholder="{{session('name')}}">
+                    @else
+                    <input type="text" class="form-control" name="name" placeholder="Enter name">
+                    @endif
                     @error('name')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror   
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
-                    <textarea type="text" name="description" class="form-control" placeholder="Enter description"></textarea>
+                    <textarea type="text" name="description" class="form-control" value="" placeholder="Enter description">{{session('name')}}</textarea>
                     @error('description')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror

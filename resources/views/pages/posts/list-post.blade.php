@@ -8,17 +8,19 @@
             <div class="form-group">
                 <div class="col-sm-3 col-sm-offset-9">
                     <div class="input-group">
-                        <input type="search" name="search" class="form-control">
+                    @if(isset($search))
+                        <input type="search" name="search" class="form-control" value="{{$search}}">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">Search</button>
                         </span>
-                    </div>
-                    @if(session('mess'))
-                        <div class="error" style="color: red">{{session('mess')}}</div>
+                    @else
+                        <input type="search" name="search" class="form-control" value="">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </span>
                     @endif
-                    @if(session('mesg'))
-                        <div class="error" style="color: red;">{{session('mesg')}}</div>
-                     @endif
+                        
+                    </div>
                 </div>
             </div>
     </form>
@@ -32,7 +34,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Post Name</th>
                     <th>Description</th>
                     <th>Action</th>
@@ -40,27 +42,44 @@
             </thead>
             <tbody>
             @if(isset($data))
+                @if(count($data) > 0)   
                 @foreach($data as $post)
                 <tr>
                     <td><input type="checkbox" name="delid[]" value="{{$post->id}}"></td>
-                    <td>{{$post->id}}</td>
+                    <td>{{$num++}}</td>
                     <td> <a href="{{route('posts.show', $post->id)}}">{{$post->name}}</a></td>
                     <td>{{$post->description}}</td>
                     <td>
                         <div>
-                            <a href="{{route('posts.edit', $post->id)}}" class="btn btn-warning">Edit</a>
+                            <a href="{{route('posts.edit', $post->id)}}" 
+                            class="btn btn-warning" data-toggle="modal" data-target="#myModal">Edit</a>
                         </div>
                     </td>
                 </tr>
                 @endforeach
+                @else
+                <tr>
+                    <td colspan="5" style="text-align: center; color:red; font-size: 20px">"{{$search}}" not found.</td>
+                </tr>
+                @endif
+            @else
+                <tr>
+                    <td colspan="5" style="text-align: center; color:red; font-size: 20px">Sorry...You have must type to search.</td>
+                </tr>
             @endif
             </tbody>
         </table>
-        <button class="btn btn-danger" type="submit">Delete</button>
+        <button class="btn btn-danger" onclick="confirm('Are you sure you want to delete?')" type="submit">Delete</button>
         <div class="text-center">
             {{$data->render('vendor.pagination.bootstrap-4')}}
         </div>
     </form>
 </div>
-    
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+      </div>
+    </div>
+  </div>
 @endsection

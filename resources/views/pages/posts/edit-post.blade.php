@@ -1,8 +1,3 @@
-@extends('layouts.dashboard')
-@section('title', ' | Edit post page')
-@section('content')
-
-
 <div class="panel panel-warning">
       <div class="panel-heading">
             <h3 class="panel-title">EDIT POSST</h3>
@@ -11,6 +6,7 @@
             <form action="{{route('posts.update', $posts->id)}}" method="POST" role="form" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
+                    
                 <div class="form-group">
                     <label for="">Post Name</label>
                     <input type="text" class="form-control" name="name" value="{{$posts->name}}" placeholder="Enter name post">
@@ -30,8 +26,3 @@
             </form>
       </div>
 </div>
-
-
-
-
-@endsection
