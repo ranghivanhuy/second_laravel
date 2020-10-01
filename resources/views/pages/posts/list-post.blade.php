@@ -11,12 +11,16 @@
                     @if(isset($search))
                         <input type="search" name="search" class="form-control" value="{{$search}}">
                         <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </span>
                     @else
                         <input type="search" name="search" class="form-control" value="">
                         <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </span>
                     @endif
                         
@@ -27,9 +31,6 @@
     <form action="{{ url('posts/delete') }}" method="post">
         @csrf
         @method('DELETE')
-        @if(session('msg'))
-            <div class="error" style="color:red">{{session('msg')}}</div>
-        @endif
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -46,13 +47,15 @@
                 @foreach($data as $key => $post)
                 <tr>
                     <td><input type="checkbox" name="delid[]" value="{{$post->id}}"></td>
-                    <td>{{ ($data->currentpage()-1) * $data->perpage() + $key }}</td>
+                    <td>{{ ($data->currentpage() - 1) * $data->perpage() + ++$key }}</td>
                     <td> <a href="{{route('posts.show', $post->id)}}">{{$post->name}}</a></td>
                     <td>{{$post->description}}</td>
                     <td>
                         <div>
                             <a href="{{route('posts.edit', $post->id)}}" 
-                            class="btn btn-warning" data-toggle="modal" data-target="#myModal">Edit</a>
+                            class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -69,7 +72,12 @@
             @endif
             </tbody>
         </table>
-        <button class="btn btn-danger" onclick="confirm('Are you sure you want to delete?')" type="submit">Delete</button>
+        <button class="btn btn-danger" onclick="confirm('Are you sure you want to delete?')" type="submit">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+            @if(session('msg'))
+            <div class="error" style="color:red">{{session('msg')}}</div>
+            @endif
         <div class="text-center">
             {{$data->render('vendor.pagination.bootstrap-4')}}
         </div>
