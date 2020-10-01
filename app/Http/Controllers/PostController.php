@@ -121,6 +121,7 @@ class PostController extends Controller
         
         $data = Post::where('name', 'LIKE', '%' . $search . '%')
         ->paginate(5);
+        $data->appends(['search' => $search]);
         return view('pages.posts.list-post', compact('data', 'num', 'search'));
     }
 }
