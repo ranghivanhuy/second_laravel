@@ -16,14 +16,14 @@
                 @endif
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Enter your email address">
+                    <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="Enter your email address">
                 </div>
                 @error('email')
                 <div class="error" style="color:red;">{{$message}}</div>
                 @enderror
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                    <input type="password" class="form-control" name="password"  placeholder="Enter your password">
                 </div>
                 @error('password')
                 <div class="error" style="color:red;">{{$message}}</div>

@@ -12,14 +12,14 @@
             @csrf
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                    <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Enter your name">
                     @error('name')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Enter your email address">
+                    <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="Enter your email address">
                     @error('email')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror
