@@ -43,10 +43,10 @@
             <tbody>
             @if(isset($data))
                 @if(count($data) > 0)   
-                @foreach($data as $post)
+                @foreach($data as $key => $post)
                 <tr>
                     <td><input type="checkbox" name="delid[]" value="{{$post->id}}"></td>
-                    <td>{{$num++}}</td>
+                    <td>{{ ($data->currentpage()-1) * $data->perpage() + $key }}</td>
                     <td> <a href="{{route('posts.show', $post->id)}}">{{$post->name}}</a></td>
                     <td>{{$post->description}}</td>
                     <td>
