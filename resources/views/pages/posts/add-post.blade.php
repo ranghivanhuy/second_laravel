@@ -16,11 +16,11 @@
                     <input type="text" class="form-control" name="name" placeholder="Enter name post">
                     @error('name')
                     <div class="error" style="color:red;">{{$message}}</div>
-                    @enderror
+                    @enderror   
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
-                    <input type="text" class="form-control" name="description" placeholder="Enter description">
+                    <textarea type="text" name="description" class="form-control" placeholder="Enter description"></textarea>
                     @error('description')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror

@@ -9,7 +9,7 @@
       </div>
       <div class="panel-body">
             <form action="{{route('posts.update', $posts->id)}}" method="POST" role="form" enctype="multipart/form-data">
-                    @method('PATCH')
+                    @method('PUT')
                     @csrf
                 <div class="form-group">
                     <label for="">Post Name</label>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
-                    <input type="text" class="form-control" name="description" value="{{$posts->description}}" placeholder="Enter description">
+                    <textarea type="text" name="description" class="form-control" placeholder="Enter description">{{$posts->description}}</textarea>
                     @error('description')
                     <div class="error" style="color:red;">{{$message}}</div>
                     @enderror

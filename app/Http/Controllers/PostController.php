@@ -82,7 +82,7 @@ class PostController extends Controller
         $post->name = $request->get('name');
         $post->description = $request->get('description');
         $post->save();
-        return redirect('posts');
+        return redirect()->route('posts.index');
         
     }
 
@@ -92,17 +92,32 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function tickToDelete(Request $request)
     {
-        $post = Post::find($id);
-        $post = Post::whereIn($id);
-        $post->status = 0;
-        $post->save();
-        return redirect()->route('posts.index');
+        $delid = $request->input('delid');
+        if($delid != ''){
+            $post = Post::whereIn('id', $delid)->delete();
+            return redirect()->route('posts.index');
+        }
+        else
+        {
+            return redirect()->back()->with('msg', 'Sorry...You haven`t tick yet.');
+        }
     }
 
     public function search(Request $request)
     {
-        // 
+        $search = $request->input('search');
+        if(!is_null($search)){
+            $data = Post::where('name', 'LIKE', '%' . $search . '%')
+            ->paginate(5);
+            if(count($data) > 0){
+                return view('pages.posts.list-post', compact('data'));
+            }else{
+                return redirect()->route('posts.index')->with('mesg', 'Search result not found.');
+            }
+        }else {
+            return redirect()->back()->with('mess','Sorry…You haven`t type yet.');
+        }
     }
 }
