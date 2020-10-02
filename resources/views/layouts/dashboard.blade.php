@@ -23,7 +23,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('posts.index')}}">List post</a></li>
             <li><a href="{{route('posts.create')}}">Add post</a></li>
+            @if(Auth::user())
             <li><a href="{{route('logout')}}">Logout</a></li>
+            @endif
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>

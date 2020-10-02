@@ -17,9 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $num = 1;
-        $data = DB::table('posts')->where('status', '=', '1')->orderBy('id', 'asc')->paginate(5);
-        return view('pages.posts.list-post', compact('data', 'num'));
+        $data = DB::table('posts')->orderBy('id', 'asc')->paginate(5);
+        return view('pages.posts.list-post', compact('data'));
     }
 
     /**
@@ -116,12 +115,11 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $num = 1;
         $search = $request->input('search');
         
         $data = Post::where('name', 'LIKE', '%' . $search . '%')
         ->paginate(5);
-        $data->appends(['search' => $search]);
-        return view('pages.posts.list-post', compact('data', 'num', 'search'));
+        $data->appends(['search' => $search]); // Gán biến của giá trị search trên URL
+        return view('pages.posts.list-post', compact('data', 'search'));
     }
 }
