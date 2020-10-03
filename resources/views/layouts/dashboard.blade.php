@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard @yield('title')</title>
+    <!-- Important to work AJAX CSRF -->
+    <meta name="_token" content="{!! csrf_token() !!}" />
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 
@@ -22,7 +26,6 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('posts.index')}}">List post</a></li>
-            <li><a href="{{route('posts.create')}}">Add post</a></li>
             @if(Auth::user())
             <li><a href="{{route('logout')}}">Logout</a></li>
             @endif
@@ -37,5 +40,10 @@
     </div>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/ajax-post.js')}}"></script>
+    <script src="{{asset('js/validation-post.js')}}"></script>
+    
+    
 </html>

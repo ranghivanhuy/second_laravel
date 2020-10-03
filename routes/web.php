@@ -39,9 +39,7 @@ Route::group(['as' => 'posts.'], function(){
     Route::get('/posts', [PostController::class, 'index'])->name('index');
 
     Route::get('posts/create', [PostController::class, 'create'])->name('create');
-    Route::post('posts/store', [PostController::class, 'store'])->name('store');
-
-    Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('edit');
+    Route::post('posts', [PostController::class, 'store'])->name('store');
     Route::put('posts/update/{id}', [PostController::class, 'update'])->name('update');
 
     Route::get('posts/show/{id}', [PostController::class, 'show'])->name('show');

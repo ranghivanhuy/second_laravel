@@ -17,18 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = DB::table('posts')->orderBy('id', 'asc')->paginate(5);
+        $data = DB::table('posts')->orderBy('id', 'asc')->paginate(10);
         return view('pages.posts.list-post', compact('data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.posts.add-post');
     }
 
     /**
@@ -39,18 +29,8 @@ class PostController extends Controller
      */
     public function store(AddRequest $request)
     {
-        $input['name'] = $request->get('name');
-        $input['description'] = $request->get('description');
-        $post = Post::create($input);
-        if($post)
-        {
-            return redirect()->route('posts.index');
-        }
-        else
-        {
-            return redirect()->back()->with('name', $input['name']);
-        }
-        
+        $posts = Post::create($request->input());
+        return response()->json($posts);
     }
 
     /**
@@ -61,20 +41,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts = Post::find($id);
-        return view('pages.posts.view-post')->with('posts', $posts);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $posts = Post::findOrFail($id);
-        return view('pages.posts.edit-post', compact('posts'));
+        $post = Post::find($id);
+        return response()->json($post);
     }
 
     /**
@@ -84,13 +52,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $post = Post::find($id);
         $post->name = $request->get('name');
         $post->description = $request->get('description');
         $post->save();
-        return redirect()->route('posts.index');
+        return response()->json($post);
         
     }
 

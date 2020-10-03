@@ -3,7 +3,9 @@
 @section('content')
 
 <div class="list-post">
-    
+    <div class="add-post-btn">
+        <a id="btn_add" name="btn_add" class="btn btn-success">Add</a>
+    </div>
     <form action="{{route('posts.search')}}" method="get" class="form-horizontal" role="form">
             <div class="form-group">
                 <div class="col-sm-3 col-sm-offset-9">
@@ -41,19 +43,18 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="posts-list" name="posts-list">
             @if(isset($data))
                 @if(count($data) > 0)   
                 @foreach($data as $key => $post)
-                <tr>
+                <tr  id = "post-{{$post->id}}">
                     <td><input type="checkbox" name="delid[]" value="{{$post->id}}"></td>
-                    <td>{{ ($data->currentpage() - 1) * $data->perpage() + ++$key }}</td>
+                    <td class = "number-row">{{ ($data->currentpage() - 1) * $data->perpage() + ++$key }}</td>
                     <td> <a href="{{route('posts.show', $post->id)}}">{{$post->name}}</a></td>
                     <td>{{$post->description}}</td>
                     <td>
                         <div>
-                            <a href="{{route('posts.edit', $post->id)}}" 
-                            class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                            <a class="btn btn-warning btn-detail open_modal" value="{{$post->id}}" data-id="{{$post->id}}">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
                         </div>
@@ -83,11 +84,5 @@
         </div>
     </form>
 </div>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-      </div>
-    </div>
-  </div>
+@include('pages.posts.modal-post')
 @endsection
