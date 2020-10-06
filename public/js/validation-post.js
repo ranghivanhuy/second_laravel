@@ -46,14 +46,12 @@ function ValidateEdit(){
 function namePostVerify(){
     if (namePost.value != "") {
         namePost.style.border = "1px solid #008000";
-        namePost_error.innerHTML = "";
         return true;
     }
 }
 function descriptionVerify(){
     if (description.value != "") {
         description.style.border = "1px solid #008000";
-        description_error.innerHTML = "";
         return true;
     }
 }

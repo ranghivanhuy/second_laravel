@@ -18,3 +18,7 @@ input[type=text], textarea[type=text] {
     background: transparent;
     margin-bottom: 15px;
 }
+.msg-success{
+    text-align: center;
+    color: greenyellow;
+}

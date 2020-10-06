@@ -6,12 +6,13 @@
     <div class="add-post-btn">
         <a id="btn_add" name="btn_add" class="btn btn-success">Add</a>
     </div>
+    <p class="msg-success"></p>
     <form action="{{route('posts.search')}}" method="get" class="form-horizontal" role="form">
             <div class="form-group">
                 <div class="col-sm-3 col-sm-offset-9">
                     <div class="input-group">
                     @if(isset($search))
-                        <input type="search" name="search" class="form-control" value="{{$search}}">
+                        <input type="search" name="search" id="search" class="form-control" value="{{$search}}">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -19,7 +20,7 @@
                         </span>
                     @else
                         <input type="search" name="search" class="form-control" value="">
-                        <span class="input-group-btn">
+                        <span class="input-group-btn">`
                             <button type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
@@ -50,7 +51,7 @@
                 <tr  id = "post-{{$post->id}}">
                     <td><input type="checkbox" name="delid[]" value="{{$post->id}}"></td>
                     <td class = "number-row">{{ ($data->currentpage() - 1) * $data->perpage() + ++$key }}</td>
-                    <td> <a href="{{route('posts.show', $post->id)}}">{{$post->name}}</a></td>
+                    <td> <a data-id="{{$post->id}}" class="open_modal-view">{{$post->name}}</a></td>
                     <td>{{$post->description}}</td>
                     <td>
                         <div>

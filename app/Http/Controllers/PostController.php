@@ -31,6 +31,7 @@ class PostController extends Controller
     {
         $posts = Post::create($request->input());
         return response()->json($posts);
+        // return view('pages.posts.list-post', compact('posts'));
     }
 
     /**
@@ -86,7 +87,7 @@ class PostController extends Controller
         $search = $request->input('search');
         
         $data = Post::where('name', 'LIKE', '%' . $search . '%')
-        ->paginate(5);
+        ->paginate(10);
         $data->appends(['search' => $search]); // Gán biến của giá trị search trên URL
         return view('pages.posts.list-post', compact('data', 'search'));
     }

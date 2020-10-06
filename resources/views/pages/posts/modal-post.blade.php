@@ -26,13 +26,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btn-save" value="add">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btn-save" value="add">Save</button>
                 <input type="hidden" id="id-post" name="id" value="0">
-                <div class="val_error">
-                    <div class="val_error" id="name_error"></div>
-                    <div class="val_error" id="description_error"></div>
-                </div>
             </div>
         </div>
     </div>
