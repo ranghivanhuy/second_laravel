@@ -22,3 +22,17 @@ input[type=text], textarea[type=text] {
     text-align: center;
     color: greenyellow;
 }
+
+/* Candidate register */
+.register-candidate {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid;
+    margin: 5px;
+}
+.submit-btn{
+    text-align: center;
+}
+.panel-title{
+    text-transform: uppercase;
+}

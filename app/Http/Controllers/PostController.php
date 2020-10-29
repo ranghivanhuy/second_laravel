@@ -38,7 +38,8 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @return Response
      */
     public function show($id)
     {
@@ -49,8 +50,10 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Request  $request
+     * 
+     * @param  int  $id id
+     * 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -65,8 +68,7 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function tickToDelete(Request $request)

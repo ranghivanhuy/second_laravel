@@ -17,8 +17,8 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(isset(Auth::user()->role_id)){
-            return redirect('dashboard');
+        if(isset(Auth::user()->roles)){
+            return redirect('/home');
         }else{
             return $next($request);
         }

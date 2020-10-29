@@ -14,9 +14,18 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{route('getLogin')}}">Login</a></li>
+            <li>
+                <form action="{{ route('switchLang') }}" class="form-lang" method="post">
+                    <select class="form-control" name="locale" onchange='this.form.submit();'>
+                        <option class="form-control" value="en">{{ trans('message.lang.en') }}</option>
+                        <option class="form-control" value="vi"{{ Lang::locale() === 'vi' ? 'selected' : '' }}>{{ trans('message.lang.vi') }}</option>
+                    </select>
+                    {{ csrf_field() }}
+                </form>
+            </li>
+            <li><a href="{{route('getLogin')}}">{{ Lang::get('message.login') }}</a></li>
             <li class="dropdown">
-                <a href="{{route('getRegister')}}">Register</a>
+                <a href="{{route('getRegister')}}">{{ Lang::get('message.register') }}</a>
             </li>
         </ul>
     </div><!-- /.navbar-collapse -->

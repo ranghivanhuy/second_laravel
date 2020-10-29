@@ -64,7 +64,7 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="5" style="text-align: center; color:red; font-size: 20px">"{{$search}}" not found.</td>
+                    <td colspan="5" style="text-align: center; color:red; font-size: 20px">"" not found.</td>
                 </tr>
                 @endif
             @else
